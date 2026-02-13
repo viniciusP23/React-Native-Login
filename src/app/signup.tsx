@@ -1,39 +1,32 @@
 import { Link } from "expo-router"
-import { useState } from "react"
-import { Alert, Image, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native"
+import { Image, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native"
 
 import { Button } from "./components/Button"
 import { Input } from "./components/input"
 
-export default function Index() {
-
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
-
-    function handleSignIn() {
-        if(!email.trim() || !password.trim()) {
-            return Alert.alert("Preencha e-mail e senha para entrar.")
-        }
-    }
+export default function Signup() {
 
     return (
         <KeyboardAvoidingView style={{flex: 1}} behavior={Platform.select({ios: "padding", android: "height"})}>
             <ScrollView contentContainerStyle={{flexGrow: 1}} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
                 <View style={style.container}>
 
-                    <Image source={require("./assets/img1.jpg")} style={style.illustration} />
+                    <Image source={require("./assets/img2.jpg")} style={style.illustration}/>
 
-                    <Text style={style.title}>Entrar</Text>
-                    <Text style={style.subtitle}>Acesse sua conta com e-mail e senha.</Text>
+                    <Text style={style.title}>Cadastrar</Text>
+                    <Text style={style.subtitle}>Crie sua conta para acessar.</Text>
 
                     <View style={style.form}>
-                        <Input placeholder="E-mail" keyboardType="email-address" onChangeText={setEmail}/>
-                        <Input placeholder="Senha" secureTextEntry onChangeText={setPassword}/>
+                        <Input placeholder="Nome"/>
+                        <Input placeholder="E-mail" keyboardType="email-address"/>
 
-                        <Button label="Entrar" onPress={handleSignIn}/>
+                        <Input placeholder="Senha" secureTextEntry />
+                        <Input placeholder="Confirmar Senha" secureTextEntry/>
+
+                        <Button label="Cadastrar" />
                     </View>
 
-                    <Text style={style.footerText}>Não tem uma conta? {" "} <Link href="/signup" style={style.footerLink}>Cadastre-se aqui.</Link></Text>
+                    <Text style={style.footerText}>Já tem uma conta? {" "} <Link href="/" style={style.footerLink}>Entre aqui.</Link></Text>
                 </View>
             </ScrollView>
         </KeyboardAvoidingView>
